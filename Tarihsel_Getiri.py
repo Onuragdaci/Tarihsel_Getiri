@@ -155,7 +155,7 @@ st.title('Aylık Endeks: '+ Endeks_Girdi)
 
 st.dataframe(Endeks_Ozet[:-3].style.applymap(cooling_highlight, 
                                         subset=['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık']),
-                                        height=1200,
+                                        height=600,
                                         use_container_width=True)
 
 
@@ -171,7 +171,7 @@ st.dataframe(Sapmalar.style.applymap(cooling_highlight,
 st.title('Çeyreklik Endeks: '+ Endeks_Girdi)
 st.dataframe(Endeks_Ozet_Ceyrek[:-3].style.applymap(cooling_highlight, 
                                         subset=['Q1','Q2','Q3','Q4']),
-                                        height=1200,
+                                        height=600,
                                         use_container_width=True)
 
 st.header('Çeyreklik Ortalamalar')
