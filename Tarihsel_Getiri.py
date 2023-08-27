@@ -3,10 +3,6 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 
-
-
-
-
 #XBANK	#BIST BANKA
 #XBLSM	#BIST BİLİŞİM
 #XELKT	#BIST ELEKTRİK
@@ -68,20 +64,6 @@ Aylar=['Yıllar','Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağ
 Çeyrekler=['Yıllar','Q1','Q2','Q3','Q4']
 
 tv = TvDatafeed()
-
-
-def Hisse_Temel_Veriler():
-    url1="https://www.isyatirim.com.tr/tr-tr/analiz/hisse/Sayfalar/Temel-Degerler-Ve-Oranlar.aspx#page-1"
-    context = ssl._create_unverified_context()
-    response = request.urlopen(url1, context=context)
-    url1 = response.read()
-
-    df = pd.read_html(url1,decimal=',', thousands='.')                         #Tüm Hisselerin Tablolarını Aktar
-    df1=df[2]                                                                  #Tüm Hisselerin Özet Tablosu
-    df2=df[6]
-    df2['Sektör']=df1[['Sektör']]                                               
-    return df2   
-
 
 def Endeks_Analiz(Endeks):
     Alt_Endeks = tv.get_hist(symbol=Endeks,exchange='BIST',interval=Interval.in_monthly,n_bars=(1000))
@@ -160,9 +142,7 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded")
 with st.sidebar:
-    Hisse_Ozet=Hisse_Temel_Veriler()
-    Hisse_Adı=Hisse_Ozet['Kod'].tolist()
-    Secim=Hisse_Adı+Endeksler
+    Secim=Endeksler+Hisseler
     Endeks_Girdi = st.selectbox('Seçim',Secim)
 
 Endeks_Ozet,Endeks_Ozet_Ceyrek=Endeks_Analiz(Endeks_Girdi)
