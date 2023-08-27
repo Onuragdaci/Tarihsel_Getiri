@@ -1,6 +1,5 @@
 from tvDatafeed import TvDatafeed, Interval
 import pandas as pd
-import matplotlib.pyplot as plt
 import numpy as np
 import ssl
 from urllib import request
